@@ -1,0 +1,45 @@
+fineSize : 320    
+patchSize : 32    
+batchSize : 8  ## 
+test_dataroot : /home/arc-crw5713/data/low_light_test
+train_dataroot : /home/arc-crw5713/data/low_light_qc_train_-2ev/train.h5
+
+motion_sample_percent : 0.9
+
+model : fusion_model
+dataset_mode : hd5f
+
+which_model_netD : patch_dis 
+which_model_netP : patch_dis
+vgg_choose : relu5_1
+patchD_3 : 0
+use_wgan : True
+vgg : 10.0   #### 
+K_GA : 1.0
+K_GP : 1.0
+opti_mode : 3
+
+K_COSINE : 1.0   ## 0.5
+K_MSE : 1.0
+
+K_GL : 0.0
+K_MASK : 0.5
+K_GSPA : 0.2  ##
+K_TV : 0.08
+lr : 0.001
+milestones : 10,100,150   # 80,125,175
+
+aligen_AB : False
+
+which_direction : A   ## A_enhance A
+which_model_netG : endec_atten_net   # sid_unet_resize  in_deconv_unet  atten_net endec_atten_net
+name : restore_fusion_gan   ## 
+output_mode : direct_img
+output_nc : 3
+tanh : True
+skip : 1.0
+self_attention : False
+box_filter : False
+random_mask : False
+
+mask_type : poly

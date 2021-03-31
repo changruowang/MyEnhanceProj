@@ -1,0 +1,65 @@
+fineSize : 320    
+patchSize : 32    
+batchSize : 8    ## 
+test_dataroot : /home/arc-crw5713/data/low_light_test
+train_dataroot : /home/arc-crw5713/data/low_light_qc_train_-2ev/train.h5
+
+motion_sample_percent : 0.8
+
+model : restore_model
+dataset_mode : hd5f
+noise : 1
+patch_vgg : True
+patchD_3 : 5
+n_layers_D : 5
+n_layers_patchD : 4
+use_norm : 1
+instance_norm : 0
+vgg : 0.0    #### 
+vgg_choose : relu5_1
+
+K_COSINE : 1.0
+K_MSE : 1.0
+K_GL : 0.0
+K_GSPA : 100.0  ## 100.0
+
+
+###  little learning rate for trans learning ohem
+niter : 50
+niter_decay : 50
+milestones : 100,101
+lr : 0.000001
+which_epoch : W04
+batchSize : 16    ##
+#### 
+
+aligen_AB : True
+which_model_netG : sid_unet_resize
+name : restore_qc_mask_cos
+output_mode : direct_img
+output_nc : 3
+tanh : True
+skip : 1
+self_attention : False
+box_filter : False
+
+
+# K_TV : 800.0
+
+# which_model_netG : sid_unet_resize   #
+# name : restore_line_trans 
+# output_mode : line_trans
+# output_nc : 12
+# tanh : False
+# skip : 0
+# self_attention : False
+# box_filter : True
+
+# which_model_netG : en_net_nopool
+# name : restore_cur_trans 
+# output_mode : cur_trans
+# output_nc : 24
+# tanh : True
+# skip : 0
+# self_attention : False
+# box_filter : True

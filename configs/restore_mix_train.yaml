@@ -1,0 +1,45 @@
+## ------------ Options -------------
+fineSize : 320    ## 
+patchSize : 32    ##
+batchSize : 8    ## 
+test_dataroot : /home/arc-crw5713/data/low_light_test_qc
+train_dataroot : /home/arc-crw5713/data/low_light_qc/train_clear.h5
+motion_sample_percent : 0.8
+model : restore_gan_model
+dataset_mode : hd5f
+which_model_netG : sid_unet_resize   #
+noise : 1
+tanh : True
+patch_vgg : True
+n_layers_D : 0
+n_layers_patchD : 4
+skip : 1
+instance_norm : 0
+vgg_choose : relu5_1
+self_attention : False
+
+vgg : 0.0    
+patchD_3 : 0    ### close  patch dis
+lr : 0.001  ## 0.0002 
+milestones : 30,100,150
+
+#####   single gan
+K_MSE : 1.0
+K_GP : 0.0
+K_GA : 0.2
+K_GL : 0.0
+K_GSPA : 100.0
+
+#####  wgan  patch-gan  cgan   aligent condition 
+use_wgan : True
+which_model_netD : no_norm_4   ##  no_norm_4  unet_dis
+aligen_AB : False      ###  same scene condition
+use_rotate_aug : True  ###　condition aug
+box_filter : False
+use_ragan : False 
+hybrid_loss : True           ## g and d all use ra loss   
+no_lsgan : False
+mix_argue : False   ###  use mix auge  use with  which_model_netD = unet   line 192  bug !!!!!!!!!!!
+full_batch_mixup : False
+slow_mixup : False
+name : restore_gan_mse

@@ -1,0 +1,41 @@
+fineSize : 320    
+patchSize : 32    
+test_dataroot : /home/arc-crw5713/data/low_light_test
+train_dataroot : /home/arc-crw5713/data/low_light_qc/train_clear.h5
+
+motion_sample_percent : 0.8
+
+model : fusion_model
+dataset_mode : hd5f
+noise : 1
+patch_vgg : True
+patchD_3 : 0
+n_layers_D : 5
+n_layers_patchD : 4
+instance_norm : 0
+vgg : 0.0    #### 
+vgg_choose : relu5_1
+
+K_COSINE : 1.0  ## 0.5
+K_MSE : 1.0
+K_GL : 0.0
+K_GSPA : 100.0  ## 100.0
+
+niter : 50
+niter_decay : 50
+milestones : 100,101
+lr : 0.000001
+which_epoch : stage2
+batchSize : 16    ##
+
+aligen_AB : True
+
+which_direction : A   ## A_enhance
+which_model_netG : endec_atten_net   # sid_unet_resize  in_deconv_unet  atten_net
+name : restore_fusion_mask   ## 
+output_mode : direct_img
+output_nc : 3
+tanh : True
+skip : 1.0
+self_attention : False
+box_filter : False

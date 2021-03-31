@@ -1,0 +1,51 @@
+## ------------ Options -------------
+fineSize : 320    ## 
+patchSize : 32    ##
+batchSize : 8    ## 
+test_dataroot : /home/arc-crw5713/data/low_light_test_qc
+train_dataroot : /home/arc-crw5713/data/low_light_qc_train_-2ev/train.h5
+motion_sample_percent : 0.8
+model : restore_gan_model
+dataset_mode : hd5f
+which_model_netG : sid_unet_resize   # sid_unet_resize
+noise : 1
+tanh : True
+patch_vgg : True
+n_layers_D : 5
+n_layers_patchD : 4
+skip : 1
+
+vgg : 1.0    
+patchD_3 : 0    ### close  patch dis
+lr : 0.0002  ## 0.0002 
+milestones : 100,150
+
+#####   single gan
+K_MSE : 0.0
+K_GP : 0.0
+K_GL : 0.0
+K_GSPA : 0.0
+K_GA : 1.0
+
+#### unet gan  wgan   cgan  aligent condition 
+
+### GAN 参数配置
+## wgan:    use_wgan=true  no_lsgan=false(对抗网络输出不加sigmoid)
+## lsgan：  use_wgan=false no_lsgan=false  
+## ragan:   use_wgan=false no_lsgan=false  use_ragan=true   hybrid_loss=False(对抗器也使用ra的形式) True(不使用ra的形式)
+## cgan：   use_rotate_aug=True(对抗网络输入为6通道，否则为3通道)  aligen_AB=False(设置AB是否来自成对的图象)
+## unet:    which_model_netD='unet_dis'/'no_norm_4'(对抗网络为unet或常规的patch网络)
+## mixup:   mix_argue=True full_batch_mixup=True slow_mixup=True(和unet判别器一起使用的正则手段，注意mix的其他参数)
+
+use_wgan : True
+mix_argue : False   
+which_model_netD : no_norm_4    #no_norm_4   unet_dis
+aligen_AB : False      ###  same scene condition
+use_rotate_aug : True  ###　condition aug
+box_filter : True
+use_ragan : True 
+hybrid_loss : True           ## g and d all use ra loss   
+no_lsgan : False
+full_batch_mixup : False
+slow_mixup : False
+name : restore_cgan
